@@ -9,15 +9,19 @@ function performOperation(firstArray, secondArray, operation) {
 
     } else if (operation === "OR") {
 
-        resultArray = [...firstArray]
+        for (let i = 0; i < firstArray.length; i++) {
+            if (resultArray.indexOf(firstArray[i]) == -1) {
+                resultArray.push(firstArray[i])
+            }
+        }
 
         for (let i = 0; i < secondArray.length; i++) {
-            if (firstArray.indexOf(secondArray[i]) == -1) {
+            if (resultArray.indexOf(secondArray[i]) == -1) {
                 resultArray.push(secondArray[i])
             }
         }
 
-    } else if (operation == "MINUS") {
+    } else if (operation === "MINUS") {
         for (let i = 0; i < firstArray.length; i++) {
             if (secondArray.indexOf(firstArray[i]) == -1) {
                 resultArray.push(firstArray[i])
@@ -33,9 +37,9 @@ function performOperation(firstArray, secondArray, operation) {
     return resultArray
 }
 
-performOperation([1, 2, 2, 3], [1, 2, 6, 6], "OR")
-    // performOperation([1, 2, 3, 3], [1, 2, 2, 6], "AND")
-    // performOperation([1, 2, 2], [1, 5, 6], "MINUS")
+performOperation([1, 1, 3, 5, 6, 7], [2, 4, 4, 1, 1], "OR")
+    // performOperation([1, 1, 3, 5, 6, 7], [2, 4, 4, 1, 1], "AND")
+    // performOperation([1, 1, 3, 5, 6, 7], [2, 4, 4, 1, 1], "MINUS")
 
 //BONUS 1
 function onlyOneArray(firstArray, secondArray) {
