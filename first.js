@@ -1,3 +1,5 @@
+// Function to perform OR | AND | MINUS operation 
+// ARGS Passed : Two arrays and one operation
 function performOperation(firstArray, secondArray, operation) {
     let resultArray = []
     if (operation === "AND") {
@@ -52,7 +54,7 @@ function onlyOneArray(firstArray, secondArray) {
 
 //BONUS 2
 // Change only in OR operation is required
-
+// Merge the sorted array
 function mergerSortedArrays(firstArray, secondArray) {
     let resultArray = []
     let i = 0
