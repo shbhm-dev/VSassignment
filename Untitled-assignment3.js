@@ -69,7 +69,7 @@ function help(n) {
     let last_digit = n % 10
 
     // console.log((last_digit != 1 || last_digit != 9))
-    if (checkPrime(n) == false || (last_digit != 1 && last_digit != 9)) {
+    if (checkPrime(n) && (last_digit != 1 || last_digit != 9) && last_digit != 3 && last_digit != 7) {
         console.log("Invalid number")
     } else {
         for (let i = 0; i <= n; i++)
