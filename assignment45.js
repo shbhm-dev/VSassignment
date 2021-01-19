@@ -59,7 +59,7 @@ let studentsData = [{
 /**
  * function that finds all the students who have received 90 marks in atleast one subject
  * @param Number
- * @return --
+ * @return array with students details with given marks
  */
 
 
@@ -77,9 +77,9 @@ const atleastOneSubject = function(minmarks) {
                 })
             }
         }
-        console.log(result)
+        return result
     }
-    // atleastOneSubject(90)
+    // console.log(atleastOneSubject(90))
 
 // Question 1.b
 
