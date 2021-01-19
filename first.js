@@ -2,46 +2,57 @@
 // ARGS Passed : Two arrays and one operation
 function performOperation(firstArray, secondArray, operation) {
     let resultArray = []
-    if (operation === "AND") {
-        for (let i = 0; i < firstArray.length; i++) {
-            if (secondArray.indexOf(firstArray[i]) >= 0) {
-                resultArray.push(firstArray[i])
+    switch (operation) {
+        case "AND":
+            {
+                for (let i = 0; i < firstArray.length; i++) {
+                    if (secondArray.indexOf(firstArray[i]) >= 0) {
+                        resultArray.push(firstArray[i])
+                    }
+                }
+                break;
             }
-        }
+        case "OR":
+            {
 
-    } else if (operation === "OR") {
+                for (let i = 0; i < firstArray.length; i++) {
+                    if (resultArray.indexOf(firstArray[i]) == -1) {
+                        resultArray.push(firstArray[i])
+                    }
+                }
 
-        for (let i = 0; i < firstArray.length; i++) {
-            if (resultArray.indexOf(firstArray[i]) == -1) {
-                resultArray.push(firstArray[i])
+                for (let i = 0; i < secondArray.length; i++) {
+                    if (resultArray.indexOf(secondArray[i]) == -1) {
+                        resultArray.push(secondArray[i])
+                    }
+                }
+                break;
             }
-        }
-
-        for (let i = 0; i < secondArray.length; i++) {
-            if (resultArray.indexOf(secondArray[i]) == -1) {
-                resultArray.push(secondArray[i])
+        case "MINUS":
+            {
+                for (let i = 0; i < firstArray.length; i++) {
+                    if (secondArray.indexOf(firstArray[i]) == -1) {
+                        resultArray.push(firstArray[i])
+                    }
+                }
+                break;
             }
-        }
-
-    } else if (operation === "MINUS") {
-        for (let i = 0; i < firstArray.length; i++) {
-            if (secondArray.indexOf(firstArray[i]) == -1) {
-                resultArray.push(firstArray[i])
+        default:
+            {
+                console.log("Wrong Operation!")
+                return
             }
-        }
-
-    } else {
-        console.log("Wrong Operation!")
-        return
     }
     console.log(resultArray)
     console.log(`Array Operation ${operation} has been performed on Array A of size: ${firstArray.length} and Array B of size: ${secondArray.length} and Output Array is of size: ${resultArray.length}`)
     return resultArray
 }
 
-performOperation([1, 1, 3, 5, 6, 7], [2, 4, 4, 1, 1], "OR")
-    // performOperation([1, 1, 3, 5, 6, 7], [2, 4, 4, 1, 1], "AND")
-    // performOperation([1, 1, 3, 5, 6, 7], [2, 4, 4, 1, 1], "MINUS")
+const arr1 = [1, 1, 3, 5, 6, 7]
+const arr2 = [2, 4, 4, 1, 1]
+performOperation(arr1, arr2, "OR")
+performOperation(arr1, arr2, "AND")
+performOperation(arr1, arr2, "MINUS")
 
 //BONUS 1
 function onlyOneArray(firstArray, secondArray) {
@@ -53,7 +64,6 @@ function onlyOneArray(firstArray, secondArray) {
 // onlyOneArray([1, 2, 3, 7, 8, 9], [4, 5, 6, 7, 8, 9])
 
 //BONUS 2
-// Change only in OR operation is required
 // Merge the sorted array
 function mergerSortedArrays(firstArray, secondArray) {
     let resultArray = []
