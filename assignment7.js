@@ -16,7 +16,9 @@ const countriesData = function() {
                     console.log("Fetched all the countries (Status Done)")
                     return res.json()
                 }
-            })
+            }).catch((error) => {
+                console.log(error)
+            });
     }
     /**
      * function that fetches teh capital of the country
@@ -32,7 +34,9 @@ const countryCapital = function(country) {
                 } else {
                     return res.json()
                 }
-            })
+            }).catch((error) => {
+                console.log(error)
+            });
 
     }
     /**
@@ -51,7 +55,9 @@ const getWeather = function(city) {
 
                 return res.json()
             }
-        })
+        }).catch((error) => {
+            console.log(error)
+        });
 }
 
 /**
