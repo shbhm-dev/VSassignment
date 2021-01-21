@@ -63,22 +63,20 @@ const getWeather = function(city) {
 
 const getCountriesData = async function() {
         const data = await countriesData()
-
-        const alphabets = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-
+        let alphabetAscii = 65
         const countries = Object.keys(data)
 
-
-        for (const alphabet of alphabets) {
+        while (alphabetAscii <= 90) {
             try {
-                if (countries.some((country) => country[0] == alphabet)) {
+                if (countries.some((country) => country[0] == String.fromCharCode(alphabetAscii))) {
                     // console.log(aphabet)
                 } else {
-                    throw new Error(`‘No country found from alphabet ${alphabet}`)
+                    throw new Error(`‘No country found from alphabet ${String.fromCharCode(alphabetAscii)}`)
                 }
             } catch (err) {
                 console.log(err)
             }
+            alphabetAscii++
         }
 
 
