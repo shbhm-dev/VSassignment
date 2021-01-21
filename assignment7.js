@@ -71,11 +71,11 @@ const getCountriesData = async function() {
         const data = await countriesData()
         let alphabetAscii = 65
         const countries = Object.keys(data)
-
+        let filteredCountries = []
         while (alphabetAscii <= 90) {
             try {
                 if (countries.some((country) => country[0] == String.fromCharCode(alphabetAscii))) {
-                    // console.log(aphabet)
+                    filteredCountries.push(countries.filter((country) => country[0] == String.fromCharCode(alphabetAscii))[0])
                 } else {
                     throw new Error(`‘No country found from alphabet ${String.fromCharCode(alphabetAscii)}`)
                 }
@@ -86,8 +86,8 @@ const getCountriesData = async function() {
         }
 
 
-
-        getCountryCapital(countries, data)
+        // console.log(filteredCountries)
+        getCountryCapital(data, filteredCountries)
 
     }
     /**
@@ -98,29 +98,32 @@ const getCountriesData = async function() {
      * @return -- promise
      */
 const getCountryCapital = async function(countries, data) {
-
+    // console.log(data)
     let totalCapitals = 0
-    for (const country of countries) {
+
+    for (let country of data) {
         const capitals = await countryCapital(country)
-
+            // console.log(capitals)
         try {
-
-            if (data[country].some((capital) => capital == capitals[0].capital)) {
-                // console.log(capitals[0].capital, country)
+            // console.log(countries[country])
+            if (capitals && countries[country].includes(capitals[0].capital)) {
+                // console.log("here")
                 const weatherData = await getWeather(capitals[0].capital)
-                console.log(`${capitals[0].capital} weather is`)
+                console.log(`${capitals[0].capital } weather is`)
                 console.log(weatherData.weather)
                 totalCapitals++
-
+                console.log("*******************")
+                console.log(` Finished getting weather information for ${totalCapitals} out of ${data.length}`)
+                console.log("*******************")
             } else {
-
+                console.log(country)
                 throw new Error("Capital not found")
             }
         } catch (err) {
             console.log(err)
         }
     }
-    console.log(` Finished getting weather information for ${totalCapitals} out of ${capitals.length}`)
+
 }
 
 getCountriesData()
